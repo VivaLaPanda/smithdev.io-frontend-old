@@ -1,0 +1,22 @@
+<style>
+	h1, h3 {
+		text-align: center;
+	}
+	.limitHeight {
+		min-height: 480px;
+	}
+</style>
+
+<div class="container-fluid limitHeight">
+	<div flex layout="row" class="row">
+		<admin-sidebar></admin-sidebar>
+		<div class="col-md-7">
+			<md-button ng-click="toggleLeft()" class="md-primary" hide-gt-sm>
+				Admin Menu
+			</md-button>
+			<h1>Welcome to the Admin Editor Area</h1>
+			<br />
+			<h3>Select any of the Tabs to the Left</h3>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="smithdev" >
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+	
+	
+	<!----------------------------------------------------------------
+	CSS - Load all CSS before JS
+	------------------------------------------------------------------>
+	
+	<link rel="stylesheet" href="app/css/main.css" />
+	
+	<!-- bower:css -->
+	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.css" />
+	<!-- endbower -->
+
+    <title>Smithdev</title>
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+		<script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]--> 
+	</head>
+		<body>
+		
+		<!----------------------------------------------------------------
+		Javascript
+		------------------------------------------------------------------>
+		
+		<!-- bower:js -->
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-animate/angular-animate.js"></script>
+		<script src="bower_components/angular-aria/angular-aria.js"></script>
+		<script src="bower_components/angular-messages/angular-messages.js"></script>
+		<script src="bower_components/angular-material/angular-material.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/tether/dist/js/tether.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="bower_components/lodash/lodash.js"></script>
+		<script src="bower_components/moment/moment.js"></script>
+		<script src="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.js"></script>
+		<!-- endbower -->
+		
+		<!-- UI bootstrap - Doesn't work with Bower nicely -->
+		<script src="bower_components/ui-bootstrap-tpls-2.3.1.min.js"></script>
+
+		<!-- Main App -->
+		<script src="app/app.js"></script>
+		
+		<!-- routes -->
+		<script src="app/services/config.js"></script>
+		
+		<!-- Controllers -->
+		<script src="app/controllers/main.js"></script>
+		<script src="app/controllers/login.js"></script>
+		<script src="app/controllers/signup.js"></script>
+		<script src="app/controllers/genericController.js"></script>
+
+		<!-- Directives -->
+		<!-- <script src="min/?g=directives"></script> -->
+		<script src="app/directives/header.js"></script>
+		<script src="app/directives/footer.js"></script>
+		<script src="app/directives/signup.js"></script>
+		<script src="app/directives/login.js"></script>
+		<script src="app/directives/passwordReset.js"></script>
+		<script src="app/directives/userInfoPackage.js"></script>
+
+		<!-- Services -->
+		<!-- <script src="min/?g=services"></script> -->
+		<script src="app/services/utilityService.js"></script>
+		<script src="app/services/user.js"></script>
+		
+		
+		
+		<!--[if lt IE 8]><p class=chromeframe>Your browser is out of date <a href="http://browsehappy.com/">Upgrade to a different 
+		browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+		
+		
+		<!-- Header and Footer are already tags, don't name your directives that :\ -->
+		<div ng-controller="GenericController">
+			<site-header></site-header>
+			<div ng-view></div>
+			<site-footer></site-footer>
+		</div>
+	</body>
+</html>

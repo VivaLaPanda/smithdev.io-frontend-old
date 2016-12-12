@@ -1,0 +1,121 @@
+<div class="container-fluid">
+	<div layout="row" flex ng-show="ui.infoGet" class="hidden-div">
+		<md-content flex layout-padding>
+			<div class="input-group">
+				<span class="input-group-addon" id="firstName-addon" >First Name</span>
+				<input type="text" class="form-control" id="FirstName" aria-describedby="firstName-addon" ng-model="data.firstname">
+				<span class="input-group-addon" id="lastName-addon">Last Name</span>
+				<input type="text" class="form-control" id="FirstName" aria-describedby="lastName-addon" ng-model="data.lastname">
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon" id="zip-addon">Zip</span>
+				<input type="text" class="form-control" id="zip" aria-describedby="zip-addon" ng-model="data.zip">
+			</div>
+			<div class="input-group">
+				<label for="income">Annual Household Income</label>
+				<select class="form-control" id="income" ng-model="data.income">
+					<option value="0-40K">Less than $40K</option>
+					<option value="40K-75K">$40,000 - $74,999</option>
+					<option value="75K-100K">$75,000 - $99,999</option>
+					<option value="100K-200K">$100,000 - $200,000</option>
+					<option value="200K+">More than $200K</option>
+				</select>
+			</div>
+			<div class="input-group">
+				<label for="annualequipmentcost">How much do you spend per year on golf equipment (clubs, bags, etc.)?</label>
+				<select class="form-control" id="annualequipmentcost" ng-model="data.annualequipmentcost">
+					<option value="I don't like buying equipment">I avoid buying equipment at all costs</option>
+					<option value="0-200">Less than $200</option>
+					<option value="200-500">$200 - $499</option>
+					<option value="500-1000">$500 - $1,000</option>
+					<option value="1000+">More than $1,000 annually</option>
+				</select>
+			</div>
+			<div class="input-group">
+				<label for="handicap">Handicap Index</label>
+					<select class="form-control" id="handicap" ng-model="data.handicap">
+					  <option value="scratch or better">Scratch or better</option>
+					  <option value="0.1-9.9">0.1 - 9.9</option>
+					  <option value="10.0-17.9">10.0 - 17.9</option>
+					  <option value="18.0-25.9">18.0 - 25.9</option>
+					  <option value="26.0-35.9">26.0 - 35.9</option>
+					  <option value="36+">36+</option>
+					</select>
+			</div>
+			<input type="checkbox" id="Home" name="Home" ng-model="data.homeowner"/>
+			<label for="Home" class="">
+				Are you a homeowner?
+			</label>
+			<div class="form-group" ng-show="data.homeowner">
+			  <div class="">
+				<label>
+				  <input type="checkbox" id="secondHome" name="secondHome" ng-model="data.secondhome" value="Y" /> Do you have a second home?
+				</label>
+			  </div>
+			</div>
+			<div class="input-group">
+				<label for="gender">Gender</label>
+				<select class="form-control" id="gender" ng-model="data.gender">
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+					<option value="other">Other</option>
+					<option value="not specified">Not Specified</option>
+				</select>
+			</div>
+			<div class="input-group">
+				<label for="education">Education</label>
+				<select class="form-control" id="education" ng-model="data.education">
+					<option value="hs" >High School</option>
+					<option value="somecollege">Some College</option>
+					<option value="college">College</option>
+					<option value="postgrad">Post Graduate</option>
+					<option value="unspecified">Not Specified</option>
+				</select>
+			</div>
+			<div class="input-group">
+				<label for="marital">Marital Status</label>
+				<select class="form-control" id="marital" ng-model="data.maritalstatus">
+					<option value="unmarried">Unmarried</option>
+					<option value="married">Married</option>
+					<option value="domestic partnership">Domestic Partnership</option>
+					<option value="not specified">Not Specified</option>
+				</select>
+			</div>
+
+			<div class="input-group">Home Course : {{display.courseDisplayName}}</div>
+			<div><a ng-click="display.userToggle = !display.userToggle" style="cursor: pointer;">Pick a different home course</a></div>
+			<div class="row" ng-show="display.userToggle" >
+				<br/>
+				<simple-search-box></simple-search-box>
+				<br/>
+				<just-search-results pagesize="5" reset="true"></just-search-results>
+				<just-search-controls ng-show="resultsget" ></just-search-controls>
+			</div>
+			<!-- Not yet linked, no data from service -->
+			<div class="input-group">
+				<label for="traveltime">How far are you willing to travel to play a round of golf?</label>
+				<select class="form-control" id="traveltime" ng-model="data.travelforgolf">
+					<option value="0-30 minutes">30 minutes or less</option>
+					<option value="1 hour">1 hour</option>
+					<option value="2 hours">2 hours</option>
+					<option value="3 hours">3 hours</option>
+					<option value="more than 3 hours">More than 3 hours</option>
+				</select>
+			</div>
+			<div class="input-group">
+				<label for="golftrip">How many golf trips do you take per year? (a 'golf trip' is any trip where you travel 2+ hours for the specific purpose of playing golf)</label>
+				<select class="form-control" id="golftrip" ng-model="data.annualgolftrip">
+					<option value="less than 1 per year">Less than 1 per year</option>
+					<option value="1">1</option>
+					<option value="2-3">2 - 3</option>
+					<option value="3-5">3 - 5</option>
+					<option value="6-9">6 - 9</option>
+					<option value="10+">10+ golf trips per year</option>
+				</select>
+			</div>
+			<div class="col-md-offset-10 col-md-1">
+				<button ng-click="updateUserInfo()" class="btn btn-default">{{display.updateMessage}}</button>
+			</div>
+		</md-content>
+	</div>
+</div>

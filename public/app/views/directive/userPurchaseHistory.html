@@ -1,0 +1,102 @@
+<div class="container-fluid">
+	<div flex>
+		<div class="row">
+			<label>Start Date</label>
+			<md-datepicker ng-model="start" ng-change="getPurchaseList()" md-placeholder="Enter date"></md-datepicker>
+			<label>End Date</label>
+			<md-datepicker ng-model="end" ng-change="getPurchaseList()" md-placeholder="Enter date"></md-datepicker>
+		</div>
+		<md-checkbox ng-model="filterdiv" aria-label="Activate Filters">
+			Filters
+		</md-checkbox>
+		<div class="row hidden-div" ng-show="filterdiv">
+			<h4>Filters</h4>
+			<div class="col-md-12">
+				<div class="row">
+					<md-input-container>
+						<label>Course Name</label>
+						<input ng-model="filter.name" ng-change="getTotals()">
+					</md-input-container>
+					<md-input-container>
+						<label>Price</label>
+						<input ng-model="filter.purchase_price" ng-change="getTotals()">
+					</md-input-container>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="table-responsive hidden-div" ng-cloak>
+				<table cellspacing="1" class="table table-striped">
+					<tbody>
+						<tr>
+							<th scope="col">Receipt Number</th>
+							<th scope="col">Date</th>
+							<th scope="col">Course Name</th>
+							<th scope="col" title="Price Charged">Sale Amount</th>
+						</tr>
+						<tr class="table0" ng-repeat="purchase in certPurchaseList | filter:filter" ng-show="certPurchaseList">
+							<td>{{purchase.receipt}}</td>
+							<td>{{purchase.date | date:'MM/dd/yy'}}</td>
+							<td>{{purchase.name}}</td>
+							<td><strong>{{purchase.purchase_price | currency}}</strong></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="3"><strong>Total Certificates</strong></td>
+							<!-- <td class="center"><strong>{{purchaseList.count}}</strong></td> -->
+							<td class="center">
+								<strong title="Certificate Total">{{totals.certTotal | currency}}</strong>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="table-responsive hidden-div" ng-cloak>
+				<table cellspacing="1" class="table table-striped">
+					<tbody>
+						<tr>
+							<th scope="col">Gift Card Code</th>
+							<th scope="col">Date</th>
+							<th scope="col">Recipient</th>
+							<th scope="col" title="Price Charged">Sale Amount</th>
+						</tr>
+						<tr class="table0" ng-repeat="purchase in giftCardPurchaseList" ng-show="giftCardPurchaseList">
+							<td>{{purchase.gift_code}}</td>
+							<td>{{purchase.date | date:'MM/dd/yy'}}</td>
+							<td>{{purchase.email_code}}</td>
+							<td><strong>{{purchase.amount | currency}}</strong></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="3"><strong>Total Gift Cards</strong></td>
+							<!-- <td class="center"><strong>{{purchaseList.count}}</strong></td> -->
+							<td class="center">
+								<strong title="Gift Card Total">{{totals.giftCards | currency}}</strong>
+							</td>
+							<td colspan="2">&nbsp;</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="table-responsive hidden-div" ng-cloak>
+				<table cellspacing="1" class="table table-striped">
+					<tbody>
+						<tr>
+							<td colspan="3"><strong>Grand Total</strong></td>
+							<!-- <td class="center"><strong>{{purchaseList.count}}</strong></td> -->
+							<td class="center">
+								<strong title="Grand Total">{{totals.grandTotal | currency}}</strong>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

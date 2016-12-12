@@ -1,0 +1,32 @@
+
+
+
+	<div class="row">
+	      <div class="col-md-offset-2 col-md-4">
+
+      <legend>Sign Up</legend>
+	<!--a href="#login">Or login</a-->	
+			<form class="" role="form">
+			  <div class="form-group">
+			    <label for="email">Email</label>
+			    <input ng-model="data.email" type="email" class="form-control" id="email">
+			  </div>
+			  <div class="form-group">
+			    <label for="pwd">Password:</label>
+			    <input ng-model="data.pass1" type="password" class="form-control" id="pwd">
+			  </div>
+			  <div class="form-group">
+			    <label for="pwd">Re-enter Password:</label>
+			    <input ng-model="data.pass2" type="password" class="form-control" id="pwd">
+			  </div>
+			  <button ng-click="clickedSubmit()" type="submit" class="btn btn-default">Submit</button>
+              <div>
+                <div >Already Have an acccount ? <a ng-click="">Sign in for faster checkout</a></div>
+              </div>
+			</form>
+
+	      </div>
+	      <div class="col-md-5">
+            <button style="float: bottom;" class="btn btn-default" ng-cick="">No thanks, I don't want to sign up</button>
+          </div>
+	</div>

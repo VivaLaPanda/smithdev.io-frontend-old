@@ -1,0 +1,35 @@
+
+
+<br/><br/>
+    <div class="container-fluid">
+
+		<div class="row form-row" id="popover-container">
+
+			<div class="col-md-3 col-md-offset-4 login-form">
+
+			<h2>Login</h2>
+			<!--a href="#signup">Or Sign-Up</a-->
+					<div class="error" style="color: red;">{{errorText}}</div>
+				<form class="login-form" role="form">
+				  <div class="form-group">
+					<label for="email">Email:</label>
+					<input ng-model="data.email" type="email" class="form-control" id="email">
+				  </div>
+				  <div class="form-group">
+					<label for="pass">Password:</label>
+					<input ng-model="data.pass" type="password" class="form-control" id="pass">
+				  </div>
+				  <div>
+					<a style="cursor: pointer;" ng-click="forgotPassword()">Forgot your password?</a>
+				  </div>
+				  <button ng-click="clickedSubmit()" type="submit" class="btn btn-default">Submit</button>
+				</form>
+				<br />
+				<div>
+					<a style="cursor: pointer;" href="#/signup/">Not a member? Sign up for free</a>
+				</div>
+			  </div>
+		</div>
+
+    </div>
+
