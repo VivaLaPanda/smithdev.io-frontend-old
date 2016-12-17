@@ -1,0 +1,17 @@
+body {
+	overflow: hidden;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#jumbo-hr {
+    border: none;
+    height: 2px;
+    /* Set the hr color */
+    color: grey; /* old IE */
+    background-color: grey; /* Modern Browsers */
+}
+
+.odd-row {
+    background-color: light-grey;
+}

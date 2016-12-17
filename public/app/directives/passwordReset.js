@@ -35,7 +35,6 @@ smithdev.directive('passwordReset', function($location, $routeParams, userFactor
                 }
             }
 
-
         },
         templateUrl: 'app/views/directive/passwordResetForm.html'
   };

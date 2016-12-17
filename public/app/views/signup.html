@@ -1,37 +1,110 @@
 
+<br/><br/>
+<div class="container">
+	<div class="row form-row" id="popover-container">
+		<div class="col-xs"></div>
+		<div class="col-xs-12 col-sm-6 login-form" md-whiteframe="3">
+			<div class="row" id="header-container">
+				<div class="col-xs"></div>
+				<div class="col-xs" style="text-align: center;">
+					<h2>Sign Up</h2>
+				</div>
+				<div class="col-xs"></div>
+			</div>
+			
+			<br>
+			
+			<!--a href="#signup">Or Sign-Up</a-->
+			<form class="signup-form" role="form" name="signupForm">
+				<div layout-gt-xs="row">
+					<md-input-container class="md-block" flex-gt-xs>
+						<label>Email</label>
+						<input
+							type="email"
+							name="email"
+							ng-model="data.email"
+							class="form-control"
+							id="email"
+							required
+							minlength="10"
+							maxlength="64"
+							ng-pattern="/^.+@.+\..+$/">
 
-<br/><br/><br/>
-    <div class="container-fluid">
+						<div ng-messages="signupForm.email.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+								Your email must be between 10 and 64 characters long and look like an e-mail address.
+							</div>
+						</div>
+					</md-input-container>
+				</div>
+				<div layout-gt-xs="row">
+					<md-input-container class="md-block" flex-gt-xs>
+						<label>Username</label>
+						<input
+							type="text"
+							name="username"
+							ng-model="data.username"
+							class="form-control"
+							id="username"
+							required
+							minlength="5"
+							maxlength="128">
 
-	<div class="row form-row">
-
-
-	      <div class="col-md-3 col-md-offset-4 login-form">
-
-	<h2>Sign-Up</h2>
-	<!--a href="#login">Or login</a-->	
-			<form class="signup-form" role="form">
-			  <div class="form-group">
-			    <label for="email">Email</label>
-			    <input ng-model="data.email" type="email" class="form-control" id="email">
-			  </div>
-			  <div class="form-group">
-			    <label for="pwd">Password:</label>
-			    <input ng-model="data.pass1" type="password" class="form-control" id="pwd">
-			  </div>
-			  <div class="form-group">
-			    <label for="pwd">Re-enter Password:</label>
-			    <input ng-model="data.pass2" type="password" class="form-control" id="pwd">
-			  </div>
-			  <button ng-click="clickedSubmit()" type="submit" class="btn btn-default">Submit</button>
+						<div ng-messages="signupForm.username.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength', 'maxlength']">
+								Your username must be between 5 and 128 characters.
+							</div>
+						</div>
+					</md-input-container>
+				</div>
+				<div layout-gt-xs="row">
+					<md-input-container class="md-block" flex-gt-xs>
+						<label for="pass">Password:</label>
+						<input
+							ng-model="data.pass1"
+							name="pass"
+							type="password"
+							class="form-control"
+							id="pass"
+							required
+							minlength="8"
+							maxlength="128">
+						<div ng-messages="signupForm.pass.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength', 'maxlength']">
+								Your password must be between 8 and 128 characters long.
+							</div>
+						</div>
+					</md-input-container>
+				</div>
+				<div layout-gt-xs="row">
+					<md-input-container class="md-block" flex-gt-xs>
+						<label for="passVerify">Verify Password:</label>
+						<input
+							ng-model="data.pass2"
+							name="passVerify"
+							type="password"
+							class="form-control"
+							id="passVerify"
+							required
+							ng-pattern="{{data.pass1}}"
+							minlength="8"
+							maxlength="128">
+						<div ng-messages="signupForm.passVerify.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength', 'maxlength']">
+								Your password must be between 8 and 128 characters long.
+							</div>
+							<div ng-message="pattern">Passwords must match.</div>
+						</div>
+					</md-input-container>
+				</div>
+				<div layout-gt-xs="row">
+					<md-input-container class="md-block" flex-gt-xs>
+						<md-button ng-click="clickedSubmit()" type="submit" class="float-sm-right">Submit</md-button>
+					</md-input-container>
+				</div>
 			</form>
-
-	      </div>
+		</div>
+		<div class="col-xs"></div>
 	</div>
 
-    </div>
-
-<script>
-
-
-</script>
+</div>

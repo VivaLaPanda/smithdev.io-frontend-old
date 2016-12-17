@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="smithdev" >
+<html lang="en" ng-app="smithdev" ng-controller="GenericController">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,19 +18,24 @@
 	
 	<link rel="stylesheet" href="app/css/main.css" />
 	
+	<!-- CDN loaded Google Material Icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
 	<!-- bower:css -->
 	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
 	<link rel="stylesheet" href="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.css" />
 	<!-- endbower -->
 
-    <title>Smithdev</title>
+    <title>Adrian Smith | Writes Software</title>
 	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
 		<script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]--> 
+	
+	<base href="/">
 	</head>
 		<body>
 		
@@ -66,6 +71,8 @@
 		<script src="app/controllers/main.js"></script>
 		<script src="app/controllers/login.js"></script>
 		<script src="app/controllers/signup.js"></script>
+		<script src="app/controllers/blog.js"></script>
+		<script src="app/controllers/admin.js"></script>
 		<script src="app/controllers/genericController.js"></script>
 
 		<!-- Directives -->
@@ -76,11 +83,14 @@
 		<script src="app/directives/login.js"></script>
 		<script src="app/directives/passwordReset.js"></script>
 		<script src="app/directives/userInfoPackage.js"></script>
+		<script src="app/directives/jumbotron.js"></script>
 
 		<!-- Services -->
 		<!-- <script src="min/?g=services"></script> -->
 		<script src="app/services/utilityService.js"></script>
 		<script src="app/services/user.js"></script>
+		<script src="app/services/admin.js"></script>
+		<script src="app/services/blog.js"></script>
 		
 		
 		
@@ -89,10 +99,12 @@
 		
 		
 		<!-- Header and Footer are already tags, don't name your directives that :\ -->
-		<div ng-controller="GenericController">
-			<site-header></site-header>
-			<div ng-view></div>
-			<site-footer></site-footer>
+		<site-header></site-header ng-cloak>
+		<div layout="column" style="max-height: 100%" ng-cloak id="popupContainer">
+			<md-content flex style="max-height: 100%">
+				<div ng-view layout="column" flex></div>
+				<site-footer></site-footer>
+			</md-content>
 		</div>
 	</body>
 </html>

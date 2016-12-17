@@ -1,0 +1,20 @@
+<div class="jumbotron">
+	<div class="container">
+		<div class="row flex-items-xs-middle">
+			<div class="col-sm" hide show-gt-xs>
+				<hr style="width: 100%" id="jumbo-hr" ng-show="isHome">
+			</div>
+			<div class="col-xs-12 col-md-5 col-sm-6 col-lg-4" style="text-align: center;" ng-show="isHome">
+				<h1>{{title}}</h1>
+				<p>{{subTitle}}</p>
+			</div>
+			<div class="col-xs-12 col-md-7 col-sm-8 col-lg-6" style="text-align: center;" ng-hide="isHome">
+				<h1>{{title}}</h1>
+				<p>{{subTitle}}</p>
+			</div>
+			<div class="col-sm" hide show-gt-xs>
+				<hr style="width: 100%" id="jumbo-hr" ng-show="isHome">
+			</div>
+		</div>
+	</div>
+</div>

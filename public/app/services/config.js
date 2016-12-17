@@ -22,42 +22,64 @@ function randomString(length, chars) {
     return result;
 }
 
-smithdev.config( function($routeProvider, $httpProvider) {
+smithdev.config( function($routeProvider, $httpProvider, $locationProvider) {
+	
     $httpProvider.defaults.withCredentials = true;
     $routeProvider.
       when('/admin', {
         templateUrl: 'app/views/admin/index.html',
-        controller: 'GenericController'
+        controller: 'AdminController'
       }).
       when('/login', {
         templateUrl: 'app/views/login.html',
-        controller: 'LoginController'
+        controller: 'LoginController',
+        activetab: 'login'
       }).
       when('/signup', {
         templateUrl: 'app/views/signup.html',
-        controller: 'SignUpController'
+        controller: 'SignUpController',
+        activetab: 'login'
       }).
       when('/user', {
         templateUrl: 'app/views/user.html',
-        controller: 'UserController'
+        controller: 'GenericController',
+        activetab: 'user'
       }).
       when('/passwordreset/:resetcode', {
         templateUrl: 'app/views/passwordReset.html',
-        controller: 'GenericController'
+        controller: 'GenericController',
+        activetab: 'user'
       }).
       when('/passwordreset', {
         templateUrl: 'app/views/passwordReset.html',
-        controller: 'GenericController'
+        controller: 'GenericController',
+        activetab: 'user'
+      }).
+      when('/blog', {
+        templateUrl: 'app/views/blog.html',
+        controller: 'BlogController',
+        activetab: 'contact'
+      }).
+      when('/blog/:postID', {
+        templateUrl: 'app/views/post.html',
+        controller: 'BlogController',
+        activetab: 'contact'
       }).
       when('/contact', {
         templateUrl: 'app/views/contact.html',
-        controller: 'GenericController'
+        controller: 'GenericController',
+        activetab: 'contact'
       }).
       when('/', {
         templateUrl: 'app/views/main.html',
-        controller: 'MainController'
+        controller: 'MainController',
+        activetab: 'home'
       }).
 	  otherwise({
 		redirectTo: '/'
 	  });
+	  
+	  
+	 // Use HTML5 history API
+	$locationProvider.html5Mode(true).hashPrefix('!');
 });

@@ -1,14 +1,83 @@
-<nav class="navbar navbar-static-top navbar-dark bg-inverse">
-	<a class="navbar-brand" href="#">Project name</a>
-	<ul class="nav navbar-nav">
-		<li class="nav-item active">
-			<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+<md-sidenav
+	class="md-sidenav-left"
+	md-component-id="left"
+	md-whiteframe="4"
+>
+
+	<md-toolbar class="md-tall md-accent">
+		<span flex></span>
+		<h2 class="md-toolbar-tools">smithdev.io</h1>
+	</md-toolbar>
+	
+	<div md-whiteframe="3">
+		<md-list flex>
+			<md-list-item class="md-2-line" ng-repeat="element in ui.navLeftElements" ng-click="$location.path('/' + element.name)" >
+				<md-icon class="material-icons">{{element.icon}}</md-icon>
+				<div class="md-list-item-text" layout="column">
+					<h4>{{ element.text }}</h4>
+				</div>
+			</md-list-item>
+		</md-list>
+	</div>
+
+	
+	<div md-whiteframe="3">
+		<md-list flex>
+			<md-list-item class="md-2-line" ng-click="$location.path('/admin')" ng-show="ui.userIsAdmin">
+				<md-icon class="material-icons">account_circle</md-icon>
+				<div class="md-list-item-text" layout="column">
+					<h4>Admin Interface</h4>
+				</div>
+			</md-list-item>
+			<md-list-item class="md-2-line" ng-click="$location.path('/user')" ng-show="ui.loggedIn">
+				<md-icon class="material-icons">account_circle</md-icon>
+				<div class="md-list-item-text" layout="column">
+					<h4>Account</h4>
+				</div>
+			</md-list-item>
+			<md-list-item class="md-2-line" ng-click="$location.path('/login')" ng-hide="ui.loggedIn">
+				<md-icon class="material-icons">vpn_key</md-icon>
+				<div class="md-list-item-text" layout="column">
+					<h4>Login</h4>
+				</div>
+			</md-list-item>
+			<md-list-item class="md-2-line" ng-click="$logoutUser()" ng-show="ui.loggedIn">
+				<md-icon class="material-icons">close</md-icon>
+				<div class="md-list-item-text" layout="column">
+					<h4>Logout</h4>
+				</div>
+			</md-list-item>
+		</md-list>
+	</div>
+</md-sidenav>
+
+<!-- Image and text -->
+<nav class="navbar navbar-light bg-faded">
+	<a class="navbar-brand" href="/">
+		<md-button class="md-icon-button md-primary" aria-label="Menu" ng-click="toggleLeft()" hide-gt-sm>
+			<md-icon class="material-icons">menu</md-icon>
+		</md-button>
+		<!-- <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""> -->
+		smithdev.io
+	</a>
+
+	<ul class="nav navbar-nav" hide-sm hide-xs>
+		<li class="nav-item" ng-class="{active: $route.current.activetab == element.name}" ng-repeat="element in ui.navLeftElements">
+			<a class="nav-link" ng-href="{{element.href}}">{{element.text}}</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#">About</a>
+		
+		
+		<li class="nav-item float-xs-right" ng-show="ui.userIsAdmin">
+			<a class="nav-link" href="/admin">Admin Interface</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#">Contact</a>
+		<li class="nav-item float-xs-right" ng-show="ui.loggedIn">
+			<a class="nav-link" href="/user">Account</a>
+		</li>
+		<li class="nav-item float-xs-right" ng-hide="ui.loggedIn">
+			<a class="nav-link" href="/login">Login</a>
+		</li>
+		<li class="nav-item float-xs-right" ng-show="ui.loggedIn">
+			<a class="nav-link" href="#" ng-click="logoutUser()">Logout</a>
 		</li>
 	</ul>
 </nav>

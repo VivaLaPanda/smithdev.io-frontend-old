@@ -28,14 +28,15 @@ smithdev.factory('utilityFactory', [ '$http', '$mdDialog', function($http, $q, $
 		// Appending dialog to document.body to cover sidenav in docs app
 		// Modal dialogs should fully cover application
 		// to prevent interaction outside of dialog
+		console.log("Attempting to show mdDialog for error:", err);
 		$mdDialog.show(
-		$mdDialog.alert()
-		.parent(angular.element(document.querySelector('#popupContainer')))
-			.clickOutsideToClose(true)
-			.title('Error')
-			.textContent("An error occured while communicating with the api: "+JSON.stringify(err))
-			.ariaLabel('Error has Occured')
-			.ok('Continue')
+			$mdDialog.alert()
+				.parent(angular.element(document.querySelector('#popupContainer')))
+				.clickOutsideToClose(true)
+				.title('Error')
+				.textContent("An error occured while communicating with the api: "+JSON.stringify(err))
+				.ariaLabel('Error has Occured')
+				.ok('Continue')
 		);
 	};
 	

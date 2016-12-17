@@ -12,13 +12,23 @@ smithdev.factory('userFactory', [ '$http', '$q', function($http, $q){
     var temporaryEmailAddress = undefined;
 
     var base = "https://api.smithdev.io";
-    
-    var loginObserver;
 
     /*destroy all objects we're holding so they must be refreshed*/
     var wipeAll = function(){
         currentUser = undefined;
     }
+	
+    var loginObserver;
+    var adminObserver;
+    
+    var setLoginObserver = function(fn){
+    	loginObserver = fn;
+    }
+    
+    var setAdminObserver = function(fn){
+    	adminObserver = fn;
+    }
+
 
     var refreshEmail = function(){
         console.log("refreshing email...");
@@ -67,10 +77,11 @@ smithdev.factory('userFactory', [ '$http', '$q', function($http, $q){
 
 	var loginUser = function(data){
 		return $http.post(base + "/login/login", { "data" : data })
-			.then(function(result){
-				loginObserver();
-				return result;
-			});
+		.then(function(result){
+			loginObserver();
+			adminObserver();
+			return result;
+		});
 	}
 
     var isLoggedIn = function(){
@@ -86,8 +97,8 @@ smithdev.factory('userFactory', [ '$http', '$q', function($http, $q){
         });
     }
 
-    var isAdmin = function(){
-        return $http.post(base + "/admin/anything").then(function(result){
+    var checkAdmin = function(){
+        return $http.get(base + "/admin/canary").then(function(result){
             console.log("returned from adminCheck")
             return result;
         });
@@ -117,10 +128,6 @@ smithdev.factory('userFactory', [ '$http', '$q', function($http, $q){
         console.log("sending logout request...");
 		return $http.post(base + "/user/logout", {} );
     }
-    
-    var setLoginObserver = function(fn){
-    	loginObserver = fn;
-    }
 
 	return {
             currentUser: currentUser,
@@ -128,14 +135,16 @@ smithdev.factory('userFactory', [ '$http', '$q', function($http, $q){
 			newUser : newUser,
 			loginUser : loginUser,
             isLoggedIn : isLoggedIn,
+			checkAdmin : checkAdmin,
+			setLoginObserver: setLoginObserver,
+			setAdminObserver: setAdminObserver,
 			
             refreshUser : refreshUser,
             updateUser : updateUser,
             setEmail : setEmail,
             refreshEmail : refreshEmail,
 			
-            logoutUser : logoutUser,
-            setLoginObserver : setLoginObserver
+            logoutUser : logoutUser
 
 		};
 }]);

@@ -1,5 +1,3 @@
-
-
 var smithdev = angular.module('smithdev', [
 	'ngRoute',
 	'ui.bootstrap',
@@ -12,7 +10,7 @@ var smithdev = angular.module('smithdev', [
 smithdev.config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('grey')
-    .accentPalette('orange');
+    .accentPalette('deep-orange');
 });
 
 smithdev.filter("trust", ['$sce', function($sce) {

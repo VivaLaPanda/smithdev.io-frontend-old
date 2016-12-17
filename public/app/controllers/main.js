@@ -1,4 +1,4 @@
-smithdev.controller('MainController', ['$scope', '$rootScope', function($scope, $rootScope){
+smithdev.controller('MainController', ['$scope', function($scope){
 
 	console.log("MainController now controlling");
 

@@ -1,35 +1,80 @@
 
 
 <br/><br/>
-    <div class="container-fluid">
-
-		<div class="row form-row" id="popover-container">
-
-			<div class="col-md-3 col-md-offset-4 login-form">
-
-			<h2>Login</h2>
-			<!--a href="#signup">Or Sign-Up</a-->
-					<div class="error" style="color: red;">{{errorText}}</div>
-				<form class="login-form" role="form">
-				  <div class="form-group">
-					<label for="email">Email:</label>
-					<input ng-model="data.email" type="email" class="form-control" id="email">
-				  </div>
-				  <div class="form-group">
-					<label for="pass">Password:</label>
-					<input ng-model="data.pass" type="password" class="form-control" id="pass">
-				  </div>
-				  <div>
-					<a style="cursor: pointer;" ng-click="forgotPassword()">Forgot your password?</a>
-				  </div>
-				  <button ng-click="clickedSubmit()" type="submit" class="btn btn-default">Submit</button>
-				</form>
-				<br />
-				<div>
-					<a style="cursor: pointer;" href="#/signup/">Not a member? Sign up for free</a>
+<div class="container">
+	<div class="row form-row" id="popover-container">
+		<div class="col-xs"></div>
+		<div class="col-xs-12 col-sm-6 login-form" md-whiteframe="3">
+			<div class="row" id="header-container">
+				<div class="col-xs"></div>
+				<div class="col-xs" style="text-align: center;">
+					<h2>Login</h2>
 				</div>
-			  </div>
-		</div>
+				<div class="col-xs"></div>
+			</div>
+			<!--a href="#signup">Or Sign-Up</a-->
+			<form class="login-form" role="form" name="loginForm">
+				<div layout-gt-xs="row">
+					<md-input-container class="md-block" flex-gt-xs>
+						<label>Email</label>
+						<input
+							type="email"
+							name="email"
+							ng-model="data.email"
+							type="email"
+							class="form-control"
+							id="email"
+							required
+							minlength="10"
+							maxlength="64"
+							ng-pattern="/^.+@.+\..+$/">
 
-    </div>
+						<div ng-messages="loginForm.email.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+								Your email must be between 10 and 100 characters long and look like an e-mail address.
+							</div>
+						</div>
+					</md-input-container>
+				</div>
+				<div layout-gt-xs="row">
+					<md-input-container class="md-block" flex-gt-xs>
+						<label for="pass">Password</label>
+						<input
+							ng-model="data.pass"
+							name="pass"
+							type="password"
+							class="form-control"
+							id="pass"
+							required
+							minlength="8"
+							maxlength="128">
+						<div ng-messages="loginForm.pass.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength', 'maxlength']">
+								Your password must be between 8 and 128 characters long.
+							</div>
+						</div>
+					</md-input-container>
+				</div>
+				<div layout-gt-xs="row">
+					<md-input-container class="md-block" flex-gt-xs>
+						<md-button ng-click="clickedSubmit()" type="submit" class="float-sm-right">Submit</md-button>
+					</md-input-container>
+				</div>
+			</form>
+			
+			<div class="form-group row">
+				<div class="col-xs-12">
+					<a style="cursor: pointer;" ng-click="forgotPassword()" class="float-sm-right">Forgot your password?</a>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-xs-12">
+					<a style="cursor: pointer;" href="signup/" class="float-sm-right">Not a member? Sign up for free</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs"></div>
+	</div>
+
+</div>
 

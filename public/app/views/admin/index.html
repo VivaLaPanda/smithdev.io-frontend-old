@@ -1,22 +1,136 @@
-<style>
-	h1, h3 {
-		text-align: center;
-	}
-	.limitHeight {
-		min-height: 480px;
-	}
-</style>
-
-<div class="container-fluid limitHeight">
-	<div flex layout="row" class="row">
-		<admin-sidebar></admin-sidebar>
-		<div class="col-md-7">
-			<md-button ng-click="toggleLeft()" class="md-primary" hide-gt-sm>
-				Admin Menu
-			</md-button>
-			<h1>Welcome to the Admin Editor Area</h1>
-			<br />
-			<h3>Select any of the Tabs to the Left</h3>
-		</div>
-	</div>
-</div>
+<md-content class="md-padding">
+	<md-tabs md-dynamic-height md-border-bottom>
+		<md-tab label="Blog">
+		<md-content class="md-padding">
+		
+		
+			<h1 class="md-display-2">Make or Edit Blog Post</h1>
+			<md-list flex>
+				<md-subheader class="md-no-sticky">Blog Posts</md-subheader>
+				<md-list-item class="md-3-line" ng-repeat="post in blogPosts" ng-click="setCurrentPost(post)">
+					<img ng-src="{{post.thumbImageUrl}}" class="md-avatar" alt="{{post.imageUrl}}" />
+					<div class="md-list-item-text" layout="column">
+						<h3>{{ post.title }}</h3>
+						<p>{{ post.description }}</p>
+					</div>
+					<md-button class="md-warn" ng-click="deletePost(post)">Delete</md-button>
+				</md-list-item>
+			</md-list>
+			<md-button ng-click="makeNewPost()" class="md-accent" type="submit">Add New Post</md-button>
+			
+			<form role="form" name="postForm" ng-show="currentPost.postID || newPostMode">
+				<div layout-gt-sm="row">
+					<md-input-container class="md-block" flex-gt-xs>
+						<label for="title">Title</label>
+						<input
+							ng-model="currentPost.title"
+							name="title"
+							type="text"
+							class="form-control"
+							id="title"
+							required
+							minlength="4"
+							maxlength="64">
+						<div ng-messages="postForm.title.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength', 'maxlength']">
+								You must have a title between 4 and 64 characters long.
+							</div>
+						</div>
+					</md-input-container>
+				</div>
+				<div layout-gt-sm="row">
+					<md-input-container class="md-block" flex-gt-xs>
+						<label for="desc">Description</label>
+						<input
+							ng-model="currentPost.description"
+							name="desc"
+							type="text"
+							class="form-control"
+							id="desc"
+							required
+							minlength="6"
+							maxlength="140">
+						<div ng-messages="postForm.desc.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength', 'maxlength']">
+								You must have a description between 6 and 140 characters long.
+							</div>
+						</div>
+					</md-input-container>
+				</div>
+				<div layout-gt-sm="row">
+					<md-input-container class="md-block" flex-gt-xs>
+						<label for="postBody">Post Body</label>
+						<textarea 
+							ng-model="currentPost.postBody"
+							md-maxlength="150"
+							rows="5"
+							class="form-control"
+							id="postBody"
+							name="postBody"
+							type="text"
+							required
+							md-select-on-focus>
+						</textarea>
+						<div ng-messages="postForm.postBody.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength']">
+								You must have a post body and it must be greater than 25 characters.
+							</div>
+						</div>
+					</md-input-container>
+				</div>
+				<div layout-gt-sm="row">
+					<md-input-container class="md-block" flex-gt-xs>
+						<label for="imageUrl">Image URL</label>
+						<input
+							ng-model="currentPost.imageUrl"
+							name="imageUrl"
+							type="url"
+							class="form-control"
+							id="imageUrl">
+						<div ng-messages="postForm.postBody.$error" role="alert">
+							<div ng-message-exp="['type']">
+								Must be a valid url
+							</div>
+						</div>
+					</md-input-container>
+					<md-input-container class="md-block" flex-gt-xs>
+						<label for="thumbImageUrl">Image Thumb URL</label>
+						<input
+							ng-model="currentPost.thumbImageUrl"
+							name="thumbImageUrl"
+							type="url"
+							class="form-control"
+							id="thumbImageUrl">
+						<div ng-messages="postForm.postBody.$error" role="alert">
+							<div ng-message-exp="['type']">
+								Must be a valid url
+							</div>
+						</div>
+					</md-input-container>
+				</div>
+				<div layout-gt-xs="row">
+					<md-input-container class="md-block" flex-gt-xs>
+						<md-button ng-click="modifyBlogPost()" type="submit" class="float-sm-right">Submit</md-button>
+					</md-input-container>
+				</div>
+			</form>
+			
+			
+		</md-content>
+		</md-tab>
+		<md-tab label="Project">
+			<md-content class="md-padding">
+				<h1 class="md-display-2">Make or Edit Project</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur a purus vel augue ultrices ultricies id a nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna dolor, aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar at interdum quis, vehicula sed odio. Phasellus in enim venenatis, iaculis tortor eu, bibendum ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor purus porttitor vitae. Phasellus ornare dui nec orci posuere, nec luctus mauris semper.</p>
+				<p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra quam, at semper massa orci nec magna. Donec posuere nec sapien sed laoreet. Etiam cursus nunc in condimentum facilisis. Etiam in tempor tortor. Vivamus faucibus egestas enim, at convallis diam pulvinar vel. Cras ac orci eget nisi maximus cursus. Nunc urna libero, viverra sit amet nisl at, hendrerit tempor turpis. Maecenas facilisis convallis mi vel tempor. Nullam vitae nunc leo. Cras sed nisl consectetur, rhoncus sapien sit amet, tempus sapien.</p>
+				<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+			</md-content>
+		</md-tab>
+		<md-tab label="Users">
+			<md-content class="md-padding">
+				<h1 class="md-display-2">Edit User Data</h1>
+				<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+			</md-content>
+		</md-tab>
+	</md-tabs>
+</md-content>
