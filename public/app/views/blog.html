@@ -2,6 +2,16 @@
 <jumbotron-directive title="Site Makes Right" subtitle="A blog about mostly technology" imghref=""></jumbotron-directive>
 
 <div class="container">
+	<md-list flex>
+		<md-subheader class="md-no-sticky">Blog Posts</md-subheader>
+		<md-list-item class="md-3-line" ng-repeat="post in blogPosts" ng-click="setCurrentPost(post)">
+			<img ng-src="{{post.thumbImageUrl}}" class="md-avatar" alt="{{post.imageUrl}}" />
+			<div class="md-list-item-text" layout="column">
+				<h3>{{ post.title }}</h3>
+				<p>{{ post.description }}</p>
+			</div>
+		</md-list-item>
+	</md-list>
 	<div class="row">
 		<div class="col-sm-6 col-xs-12 col-md-4">
 		</div>

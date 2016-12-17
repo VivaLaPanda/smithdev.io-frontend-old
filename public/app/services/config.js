@@ -65,6 +65,11 @@ smithdev.config( function($routeProvider, $httpProvider, $locationProvider) {
         controller: 'BlogController',
         activetab: 'contact'
       }).
+      when('/projects', {
+        templateUrl: 'app/views/projects.html',
+        controller: 'ProjectsController',
+        activetab: 'contact'
+      }).
       when('/contact', {
         templateUrl: 'app/views/contact.html',
         controller: 'GenericController',
